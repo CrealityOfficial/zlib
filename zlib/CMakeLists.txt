@@ -13,6 +13,17 @@ check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(stdint.h    HAVE_STDINT_H)
 check_include_file(stddef.h    HAVE_STDDEF_H)
 
+if(NOT WIN32)
+	if(CMAKE_BUILD_TYPE STREQUAL "Release")
+	else()
+		add_definitions(-DZLIB_DEBUG)
+	endif()
+endif()
+
+if(WIN32)
+	set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS
+		$<$<CONFIG:Debug>:ZLIB_DEBUG>)
+endif()
 #
 # Check to see if we have large file support
 #
