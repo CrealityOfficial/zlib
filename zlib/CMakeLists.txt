@@ -191,3 +191,10 @@ set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
 if(CC_INSTALL_ZLIB)
 	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS})
 endif()
+
+if(INSTALL_ZLIB)
+	INSTALL(TARGETS zlib
+				LIBRARY DESTINATION lib
+				ARCHIVE DESTINATION .
+				RUNTIME DESTINATION bin)
+endif()
