@@ -92,6 +92,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
 set(ZLIB_PUBLIC_HDRS
     ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
     zlib.h
+	zutil.h
 )
 set(ZLIB_PRIVATE_HDRS
     crc32.h
