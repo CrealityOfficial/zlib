@@ -90,7 +90,6 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
 #============================================================================
 
 set(ZLIB_PUBLIC_HDRS
-    ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
     zlib.h
 	zutil.h
 )
@@ -184,15 +183,11 @@ if(MINGW)
 endif(MINGW)
 
 add_definitions(-DZ_PREFIX)
-if(STATIC_ZLIB)
-	__add_real_target(zlib lib SOURCE ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
-else()
-	__add_real_target(zlib dll SOURCE ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
-endif()
-set_property(TARGET zlib PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+set(SRCS ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
+set(INTERFACES ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
-set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
+__add_common_library(zlib)
 
 if(CC_INSTALL_ZLIB)
-	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS})
+	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS} ${CMAKE_CURRENT_BINARY_DIR}/zconf.h)
 endif()
