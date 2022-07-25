@@ -190,6 +190,5 @@ set(INTERFACE_DEFS Z_PREFIX)
 __add_common_library(zlib)
 
 if(CC_INSTALL_ZLIB)
-	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS})
-	__install_directory_specif(${CMAKE_CURRENT_BINARY_DIR}/ zlib)
+	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS} ${CMAKE_CURRENT_BINARY_DIR}/zconf.h)
 endif()
