@@ -187,7 +187,10 @@ set(SRCS ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_P
 set(INTERFACES ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 set(INTERFACE_DEFS Z_PREFIX)
 
-__add_common_library(zlib)
+__add_real_target(zlib_static lib SOURCE ${SRCS}
+								  INTERFACE ${INTERFACES}
+								  INTERFACE_DEF ${INTERFACE_DEFS}
+								  )
 
 if(CC_INSTALL_ZLIB)
 	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS} ${CMAKE_CURRENT_BINARY_DIR}/zconf.h)
