@@ -192,6 +192,6 @@ __add_real_target(zlib_static lib SOURCE ${SRCS}
 								  INTERFACE_DEF ${INTERFACE_DEFS}
 								  )
 
-if(CC_INSTALL_ZLIB)
+if(CC_INSTALL_ZLIB_STATIC)
 	__install_inc_files(zlib SOURCE ${ZLIB_PUBLIC_HDRS} ${CMAKE_CURRENT_BINARY_DIR}/zconf.h)
 endif()
